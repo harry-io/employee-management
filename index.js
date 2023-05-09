@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+const cors = require("cors");
 const { connection } = require("./db");
 const { authRoute } = require("./route/auth.route");
 const { employeeRoute } = require("./route/employee.route");
@@ -8,6 +9,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.status(200).send({ message: "Welcome to homepage." });
 });
+app.use(cors());
 app.use(authRoute);
 app.use(employeeRoute);
 //
